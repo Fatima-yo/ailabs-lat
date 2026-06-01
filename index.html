@@ -44,14 +44,51 @@
 			min-height: 40vh;
 		}
 
-		/* Placeholder — remove when real content is added */
-		.placeholder {
-			border: 1px dashed #aaaaaa;
-			padding: 3rem 2rem;
-			text-align: center;
-			color: #aaaaaa;
-			font-style: italic;
+		/* ── Hero ───────────────────────────────────────────── */
+		.hero {
+			padding-bottom: 3rem;
+			border-bottom: 1px solid #111111;
+			margin-bottom: 3rem;
+		}
+
+		.hero h2 {
+			font-size: clamp(2.4rem, 6vw, 4rem);
+			font-weight: normal;
+			letter-spacing: 0.02em;
+			line-height: 1.2;
+		}
+
+		/* ── Use Cases ───────────────────────────────────────── */
+		.use-cases-label {
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			font-weight: bold;
+			margin-bottom: 2.5rem;
+			color: #555555;
+		}
+
+		.use-case-group {
+			margin-bottom: 2rem;
+			padding-bottom: 2rem;
+			border-bottom: 1px solid #eeeeee;
+		}
+
+		.use-case-group:last-child {
+			border-bottom: none;
+		}
+
+		.use-case-group h4 {
 			font-size: 1rem;
+			font-weight: bold;
+			letter-spacing: 0.02em;
+			margin-bottom: 0.5rem;
+		}
+
+		.use-case-group p {
+			font-size: 0.95rem;
+			color: #444444;
+			line-height: 1.75;
 		}
 
 		/* ── Contact section ─────────────────────────────────── */
@@ -139,7 +176,41 @@
 	</header>
 
 	<main>
-		<div class="placeholder">Content coming soon.</div>
+		<div class="hero">
+			<h2>AI native agency.</h2>
+		</div>
+
+		<p class="use-cases-label">AI Use Cases — What We Can Do</p>
+
+		<div class="use-case-group">
+			<h4>Generative AI &amp; LLM Applications</h4>
+			<p>RAG Systems, Fine-tune LLMs (Llama 3, Qwen 2.5, Gemma 2, Mistral, Phi), LLM Agent Development, Chatbots &amp; Assistants, Document Analysis, Content Generation, Semantic Search</p>
+		</div>
+
+		<div class="use-case-group">
+			<h4>Machine Learning &amp; AI Development</h4>
+			<p>Build ML Models (PyTorch, TensorFlow, scikit-learn), Train Deep Learning Models, Vision Transformers / Diffusion Models, Model Evaluation</p>
+		</div>
+
+		<div class="use-case-group">
+			<h4>Data Intelligence, Forecasting &amp; Analytics</h4>
+			<p>Predictive Analytics, Customer Segmentation, A/B Testing, Automated Reporting, Time Series Forecasting (LSTM, Prophet, Transformers), Risk Modeling, Fraud Detection, EDA, Data Pipelines, Feature Engineering, Statistical Modeling</p>
+		</div>
+
+		<div class="use-case-group">
+			<h4>Computer Vision</h4>
+			<p>Image Classification, Object Detection, OCR &amp; Document Processing, Face Recognition</p>
+		</div>
+
+		<div class="use-case-group">
+			<h4>Speech &amp; Audio AI</h4>
+			<p>Speech-to-Text, Sentiment Analysis, Text-to-Speech, Audio Classification</p>
+		</div>
+
+		<div class="use-case-group">
+			<h4>Experiment &amp; Research Management</h4>
+			<p>MLOps Integration (W&amp;B, MLflow, TensorBoard), A/B Testing, Model Comparison, Reproducibility</p>
+		</div>
 	</main>
 
 	<section id="contact">
@@ -147,12 +218,12 @@
 		<div class="contact-grid">
 			<div class="contact-actions">
 				<a href="https://calendly.com/marcocastiglionem/call-with-marco" target="_blank" class="btn btn-primary">Schedule a Call</a>
-				<a href="mailto:hello@theamericasconsulting.com" class="btn">Send Us a Message</a>
+				<a href="mailto:hello@ailabs.lat" class="btn">Send Us a Message</a>
 			</div>
 			<ul class="contact-details">
 				<li>
 					<h3>Email</h3>
-					<a href="mailto:hello@theamericasconsulting.com">hello@theamericasconsulting.com</a>
+					<a href="mailto:hello@ailabs.lat">hello@ailabs.lat</a>
 				</li>
 				<li>
 					<h3>Phone</h3>
