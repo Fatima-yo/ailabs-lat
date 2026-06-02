@@ -29,6 +29,9 @@
 			padding-top: 3rem;
 			padding-bottom: 3rem;
 			border-bottom: 1px solid #111111;
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
 		}
 
 		header h1 {
@@ -36,6 +39,35 @@
 			font-weight: normal;
 			letter-spacing: 0.04em;
 		}
+
+		/* ── Language selector ───────────────────────────────── */
+		.lang-switcher {
+			display: flex;
+			gap: 0.5rem;
+			font-size: 0.8rem;
+			letter-spacing: 0.08em;
+			font-family: Georgia, serif;
+		}
+
+		.lang-switcher button {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: #888888;
+			padding: 0;
+			font-size: 0.8rem;
+			font-family: inherit;
+			letter-spacing: 0.08em;
+		}
+
+		.lang-switcher button.active {
+			color: #111111;
+			font-weight: bold;
+		}
+
+		.lang-switcher button:hover { opacity: 0.6; }
+
+		.lang-divider { color: #cccccc; }
 
 		/* ── Main content ────────────────────────────────────── */
 		main {
@@ -173,69 +205,74 @@
 
 	<header>
 		<h1>AI Labs . Lat</h1>
+		<div class="lang-switcher">
+			<button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+			<span class="lang-divider">|</span>
+			<button onclick="setLang('es')" id="btn-es">ES</button>
+		</div>
 	</header>
 
 	<main>
 		<div class="hero">
-			<h2>AI native agency.</h2>
+			<h2 data-i18n="hero"></h2>
 		</div>
 
-		<p class="use-cases-label">AI Use Cases — What We Can Do</p>
+		<p class="use-cases-label" data-i18n="useCasesLabel"></p>
 
 		<div class="use-case-group">
-			<h4>Automation</h4>
-			<p>We design and deploy end-to-end automation pipelines that eliminate manual bottlenecks across your operations — from document processing and data extraction to workflow orchestration and system integration. The result: faster cycles, fewer errors, and teams focused on work that matters.</p>
-		</div>
-
-		<div class="use-case-group">
-			<h4>Generative AI &amp; LLM Applications</h4>
-			<p>RAG Systems, Fine-tune LLMs (Llama 3, Qwen 2.5, Gemma 2, Mistral, Phi), LLM Agent Development, Chatbots &amp; Assistants, Document Analysis, Content Generation, Semantic Search</p>
+			<h4 data-i18n="automationTitle"></h4>
+			<p data-i18n="automationBody"></p>
 		</div>
 
 		<div class="use-case-group">
-			<h4>Machine Learning &amp; AI Development</h4>
-			<p>Build ML Models (PyTorch, TensorFlow, scikit-learn), Train Deep Learning Models, Vision Transformers / Diffusion Models, Model Evaluation</p>
+			<h4 data-i18n="genAiTitle"></h4>
+			<p data-i18n="genAiBody"></p>
 		</div>
 
 		<div class="use-case-group">
-			<h4>Data Intelligence, Forecasting &amp; Analytics</h4>
-			<p>Predictive Analytics, Customer Segmentation, A/B Testing, Automated Reporting, Time Series Forecasting (LSTM, Prophet, Transformers), Risk Modeling, Fraud Detection, EDA, Data Pipelines, Feature Engineering, Statistical Modeling</p>
+			<h4 data-i18n="mlTitle"></h4>
+			<p data-i18n="mlBody"></p>
 		</div>
 
 		<div class="use-case-group">
-			<h4>Computer Vision</h4>
-			<p>Image Classification, Object Detection, OCR &amp; Document Processing, Face Recognition</p>
+			<h4 data-i18n="dataTitle"></h4>
+			<p data-i18n="dataBody"></p>
 		</div>
 
 		<div class="use-case-group">
-			<h4>Speech &amp; Audio AI</h4>
-			<p>Speech-to-Text, Sentiment Analysis, Text-to-Speech, Audio Classification</p>
+			<h4 data-i18n="cvTitle"></h4>
+			<p data-i18n="cvBody"></p>
 		</div>
 
 		<div class="use-case-group">
-			<h4>Experiment &amp; Research Management</h4>
-			<p>MLOps Integration (W&amp;B, MLflow, TensorBoard), A/B Testing, Model Comparison, Reproducibility</p>
+			<h4 data-i18n="speechTitle"></h4>
+			<p data-i18n="speechBody"></p>
+		</div>
+
+		<div class="use-case-group">
+			<h4 data-i18n="researchTitle"></h4>
+			<p data-i18n="researchBody"></p>
 		</div>
 	</main>
 
 	<section id="contact">
-		<p>Get in touch — we'd love to hear from you.</p>
+		<p data-i18n="contactIntro"></p>
 		<div class="contact-grid">
 			<div class="contact-actions">
-				<a href="https://calendly.com/marcocastiglionem/call-with-marco" target="_blank" class="btn btn-primary">Schedule a Call</a>
-				<a href="mailto:hello@ailabs.lat" class="btn">Send Us a Message</a>
+				<a href="https://calendly.com/marcocastiglionem/call-with-marco" target="_blank" class="btn btn-primary" data-i18n="btnSchedule"></a>
+				<a href="mailto:hello@ailabs.lat" class="btn" data-i18n="btnEmail"></a>
 			</div>
 			<ul class="contact-details">
 				<li>
-					<h3>Email</h3>
+					<h3 data-i18n="labelEmail"></h3>
 					<a href="mailto:hello@ailabs.lat">hello@ailabs.lat</a>
 				</li>
 				<li>
-					<h3>Phone</h3>
+					<h3 data-i18n="labelPhone"></h3>
 					<a href="tel:+59843726930">+598 4372 6930</a>
 				</li>
 				<li>
-					<h3>Social</h3>
+					<h3 data-i18n="labelSocial"></h3>
 					<a href="https://www.linkedin.com/company/the-americas-consulting-company" target="_blank">LinkedIn</a>
 				</li>
 			</ul>
@@ -243,8 +280,82 @@
 	</section>
 
 	<footer>
-		<p>&copy; 2026 AI Labs . Lat. All rights reserved.</p>
+		<p data-i18n="footer"></p>
 	</footer>
+
+	<script>
+		const translations = {
+			en: {
+				hero: "AI native agency.",
+				useCasesLabel: "AI Use Cases — What We Can Do",
+				automationTitle: "Automation",
+				automationBody: "We design and deploy end-to-end automation pipelines that eliminate manual bottlenecks across your operations — from document processing and data extraction to workflow orchestration and system integration. The result: faster cycles, fewer errors, and teams focused on work that matters.",
+				genAiTitle: "Generative AI & LLM Applications",
+				genAiBody: "RAG Systems, Fine-tune LLMs (Llama 3, Qwen 2.5, Gemma 2, Mistral, Phi), LLM Agent Development, Chatbots & Assistants, Document Analysis, Content Generation, Semantic Search",
+				mlTitle: "Machine Learning & AI Development",
+				mlBody: "Build ML Models (PyTorch, TensorFlow, scikit-learn), Train Deep Learning Models, Vision Transformers / Diffusion Models, Model Evaluation",
+				dataTitle: "Data Intelligence, Forecasting & Analytics",
+				dataBody: "Predictive Analytics, Customer Segmentation, A/B Testing, Automated Reporting, Time Series Forecasting (LSTM, Prophet, Transformers), Risk Modeling, Fraud Detection, EDA, Data Pipelines, Feature Engineering, Statistical Modeling",
+				cvTitle: "Computer Vision",
+				cvBody: "Image Classification, Object Detection, OCR & Document Processing, Face Recognition",
+				speechTitle: "Speech & Audio AI",
+				speechBody: "Speech-to-Text, Sentiment Analysis, Text-to-Speech, Audio Classification",
+				researchTitle: "Experiment & Research Management",
+				researchBody: "MLOps Integration (W&B, MLflow, TensorBoard), A/B Testing, Model Comparison, Reproducibility",
+				contactIntro: "Get in touch — we’d love to hear from you.",
+				btnSchedule: "Schedule a Call",
+				btnEmail: "Send Us a Message",
+				labelEmail: "Email",
+				labelPhone: "Phone",
+				labelSocial: "Social",
+				footer: "© 2026 AI Labs . Lat. All rights reserved.",
+			},
+			es: {
+				hero: "Agencia nativa en IA.",
+				useCasesLabel: "Casos de uso de IA — Lo que podemos hacer",
+				automationTitle: "Automatización",
+				automationBody: "Diseñamos e implementamos pipelines de automatización de extremo a extremo que eliminan los cuellos de botella manuales en sus operaciones — desde el procesamiento de documentos y la extracción de datos hasta la orquestación de flujos de trabajo y la integración de sistemas. El resultado: ciclos más rápidos, menos errores y equipos enfocados en el trabajo que importa.",
+				genAiTitle: "IA Generativa y Aplicaciones LLM",
+				genAiBody: "Sistemas RAG, Fine-tuning de LLMs (Llama 3, Qwen 2.5, Gemma 2, Mistral, Phi), Desarrollo de Agentes LLM, Chatbots y Asistentes, Análisis de Documentos, Generación de Contenido, Búsqueda Semántica",
+				mlTitle: "Machine Learning y Desarrollo de IA",
+				mlBody: "Construcción de Modelos ML (PyTorch, TensorFlow, scikit-learn), Entrenamiento de Modelos de Deep Learning, Vision Transformers / Modelos de Difusión, Evaluación de Modelos",
+				dataTitle: "Inteligencia de Datos, Pronóstico y Analítica",
+				dataBody: "Analítica Predictiva, Segmentación de Clientes, Pruebas A/B, Reportes Automatizados, Pronóstico de Series Temporales (LSTM, Prophet, Transformers), Modelado de Riesgo, Detección de Fraude, EDA, Pipelines de Datos, Ingeniería de Características, Modelado Estadístico",
+				cvTitle: "Visión por Computadora",
+				cvBody: "Clasificación de Imágenes, Detección de Objetos, OCR y Procesamiento de Documentos, Reconocimiento Facial",
+				speechTitle: "IA de Voz y Audio",
+				speechBody: "Voz a Texto, Análisis de Sentimientos, Texto a Voz, Clasificación de Audio",
+				researchTitle: "Gestión de Experimentos e Investigación",
+				researchBody: "Integración MLOps (W&B, MLflow, TensorBoard), Pruebas A/B, Comparación de Modelos, Reproducibilidad",
+				contactIntro: "Contáctanos — nos encantaría saber de ti.",
+				btnSchedule: "Agendar una Llamada",
+				btnEmail: "Envíanos un Mensaje",
+				labelEmail: "Correo",
+				labelPhone: "Teléfono",
+				labelSocial: "Redes",
+				footer: "© 2026 AI Labs . Lat. Todos los derechos reservados.",
+			},
+		};
+
+		function applyLang(lang) {
+			const t = translations[lang];
+			document.querySelectorAll('[data-i18n]').forEach(el => {
+				const key = el.getAttribute('data-i18n');
+				if (t[key] !== undefined) el.textContent = t[key];
+			});
+			document.documentElement.lang = lang;
+			document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+			document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+		}
+
+		function setLang(lang) {
+			localStorage.setItem('ailabs-lang', lang);
+			applyLang(lang);
+		}
+
+		const saved = localStorage.getItem('ailabs-lang') || 'en';
+		applyLang(saved);
+	</script>
 
 </body>
 </html>
