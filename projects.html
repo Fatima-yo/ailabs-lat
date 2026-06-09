@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Projects — AI Labs . Lat</title>
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+		body {
+			font-family: Georgia, 'Times New Roman', serif;
+			background: #ffffff;
+			color: #111111;
+			line-height: 1.7;
+		}
+
+		a { color: #111111; }
+		a:hover { opacity: 0.6; }
+
+		/* ── Layout ─────────────────────────────────────────── */
+		header, main, footer {
+			max-width: 860px;
+			margin: 0 auto;
+			padding: 0 2rem;
+		}
+
+		/* ── Header ─────────────────────────────────────────── */
+		header {
+			padding-top: 3rem;
+			padding-bottom: 3rem;
+			border-bottom: 1px solid #111111;
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+		}
+
+		header h1 {
+			font-size: 2rem;
+			font-weight: normal;
+			letter-spacing: 0.04em;
+		}
+
+		/* ── Language selector ───────────────────────────────── */
+		.lang-switcher {
+			display: flex;
+			gap: 0.5rem;
+			font-size: 0.8rem;
+			letter-spacing: 0.08em;
+			font-family: Georgia, serif;
+		}
+
+		.lang-switcher button {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: #888888;
+			padding: 0;
+			font-size: 0.8rem;
+			font-family: inherit;
+			letter-spacing: 0.08em;
+		}
+
+		.lang-switcher button.active {
+			color: #111111;
+			font-weight: bold;
+		}
+
+		.lang-switcher button:hover { opacity: 0.6; }
+
+		.lang-divider { color: #cccccc; }
+
+		/* ── Main content ────────────────────────────────────── */
+		main {
+			padding-top: 4rem;
+			padding-bottom: 4rem;
+			min-height: 60vh;
+		}
+
+		/* ── Hero ───────────────────────────────────────────── */
+		.hero {
+			padding-bottom: 3rem;
+			border-bottom: 1px solid #111111;
+			margin-bottom: 3rem;
+		}
+
+		.hero h2 {
+			font-size: clamp(2.4rem, 6vw, 4rem);
+			font-weight: normal;
+			letter-spacing: 0.02em;
+			line-height: 1.2;
+			margin-bottom: 1rem;
+		}
+
+		.hero p {
+			font-size: 1rem;
+			color: #444444;
+			line-height: 1.8;
+		}
+
+		/* ── Project entries ─────────────────────────────────── */
+		.projects-label {
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			font-weight: bold;
+			margin-bottom: 2.5rem;
+			color: #555555;
+		}
+
+		.project-entry {
+			margin-bottom: 2rem;
+			padding-bottom: 2rem;
+			border-bottom: 1px solid #eeeeee;
+		}
+
+		.project-entry:last-child {
+			border-bottom: none;
+		}
+
+		.project-entry-header {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 1rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.project-entry h3 {
+			font-size: 1.1rem;
+			font-weight: bold;
+			letter-spacing: 0.02em;
+		}
+
+		.project-status {
+			font-size: 0.72rem;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			color: #888888;
+			white-space: nowrap;
+		}
+
+		.project-entry p {
+			font-size: 0.95rem;
+			color: #444444;
+			line-height: 1.75;
+			margin-bottom: 0.75rem;
+		}
+
+		.project-link {
+			font-size: 0.8rem;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			text-decoration: none;
+		}
+
+		.project-link:hover { opacity: 0.6; }
+
+		/* ── Footer ─────────────────────────────────────────── */
+		footer {
+			padding-top: 1.5rem;
+			padding-bottom: 2rem;
+			border-top: 1px solid #dddddd;
+			font-size: 0.8rem;
+			color: #888888;
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<h1><a href="/" style="text-decoration:none;">AI Labs . Lat</a></h1>
+		<div class="lang-switcher">
+			<button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+			<span class="lang-divider">|</span>
+			<button onclick="setLang('es')" id="btn-es">ES</button>
+		</div>
+	</header>
+
+	<main>
+		<div class="hero">
+			<h2 data-i18n="heroTitle">Projects.</h2>
+			<p data-i18n="heroBody">Research and products we are building at AI Labs . Lat.</p>
+		</div>
+
+		<p class="projects-label" data-i18n="listLabel">Active Projects</p>
+
+		<div class="project-entry">
+			<div class="project-entry-header">
+				<h3>Andromeda</h3>
+				<span class="project-status" data-i18n="andromedaStatus">In Development</span>
+			</div>
+			<p data-i18n="andromedaDesc">A conversational, multimodal AI interface designed to be used by anyone, with no training required. Bridging the gap between AI research and everyday people.</p>
+			<a href="/andromeda.html" class="project-link" data-i18n="readMore">Read more →</a>
+		</div>
+
+		<div class="project-entry">
+			<div class="project-entry-header">
+				<h3>Control Room</h3>
+				<span class="project-status" data-i18n="controlRoomStatus">In Development</span>
+			</div>
+			<p data-i18n="controlRoomDesc">An IDE for AI. Forget about XXth Century IDEs.</p>
+			<a href="/control-room.html" class="project-link" data-i18n="readMore">Read more →</a>
+		</div>
+
+		<div class="project-entry">
+			<div class="project-entry-header">
+				<h3>Home Services Marketplace</h3>
+				<span class="project-status" data-i18n="homeStatus">In Development</span>
+			</div>
+			<p data-i18n="homeDesc">A demand-first marketplace connecting homeowners with local service providers for plumbing, electrical, repairs, and more.</p>
+			<a href="/home-services-marketplace.html" class="project-link" data-i18n="readMore">Read more →</a>
+		</div>
+
+		<div class="project-entry">
+			<div class="project-entry-header">
+				<h3>Rent Tokenization</h3>
+				<span class="project-status" data-i18n="rentStatus">In Development</span>
+			</div>
+			<p data-i18n="rentDesc">Tokenizing rental income streams on the blockchain to enable fractional ownership and new liquidity for real estate investors.</p>
+			<a href="/rent-tokenization.html" class="project-link" data-i18n="readMore">Read more →</a>
+		</div>
+	</main>
+
+	<footer>
+		<p data-i18n="footer"></p>
+	</footer>
+
+	<script>
+		const translations = {
+			en: {
+				heroTitle: "Projects.",
+				heroBody: "Research and products we are building at AI Labs . Lat.",
+				listLabel: "Active Projects",
+				andromedaStatus: "In Development",
+				andromedaDesc: "A conversational, multimodal AI interface designed to be used by anyone, with no training required. Bridging the gap between AI research and everyday people.",
+				rentStatus: "In Development",
+				rentDesc: "Tokenizing rental income streams on the blockchain to enable fractional ownership and new liquidity for real estate investors.",
+				homeStatus: "In Development",
+				homeDesc: "A demand-first marketplace connecting homeowners with local service providers for plumbing, electrical, repairs, and more.",
+				controlRoomStatus: "In Development",
+				controlRoomDesc: "An IDE for AI. Forget about XXth Century IDEs.",
+				readMore: "Read more →",
+				footer: "© 2026 AI Labs . Lat. All rights reserved.",
+			},
+			es: {
+				heroTitle: "Proyectos.",
+				heroBody: "Investigación y productos que estamos construyendo en AI Labs . Lat.",
+				listLabel: "Proyectos Activos",
+				andromedaStatus: "En Desarrollo",
+				andromedaDesc: "Una interfaz de IA conversacional y multimodal diseñada para ser utilizada por cualquier persona, sin entrenamiento previo. Acercando la investigación en IA a la gente de a pie.",
+				rentStatus: "En Desarrollo",
+				rentDesc: "Tokenización de flujos de ingresos por alquiler en blockchain para habilitar propiedad fraccionada y nueva liquidez para inversores inmobiliarios.",
+				homeStatus: "En Desarrollo",
+				homeDesc: "Un marketplace de demanda primero que conecta propietarios con proveedores de servicios locales para plomería, electricidad, reparaciones y más.",
+				controlRoomStatus: "En Desarrollo",
+				controlRoomDesc: "Un IDE para IA. Olvídate de los IDEs del siglo XX.",
+				readMore: "Leer más →",
+				footer: "© 2026 AI Labs . Lat. Todos los derechos reservados.",
+			},
+		};
+
+		function applyLang(lang) {
+			const t = translations[lang];
+			document.querySelectorAll('[data-i18n]').forEach(el => {
+				const key = el.getAttribute('data-i18n');
+				if (t[key] !== undefined) el.textContent = t[key];
+			});
+			document.documentElement.lang = lang;
+			document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+			document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+		}
+
+		function setLang(lang) {
+			localStorage.setItem('ailabs-lang', lang);
+			applyLang(lang);
+		}
+
+		const saved = localStorage.getItem('ailabs-lang') || 'en';
+		applyLang(saved);
+	</script>
+
+</body>
+</html>

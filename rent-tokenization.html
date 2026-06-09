@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Rent Tokenization — AI Labs . Lat</title>
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+		body {
+			font-family: Georgia, 'Times New Roman', serif;
+			background: #ffffff;
+			color: #111111;
+			line-height: 1.7;
+		}
+
+		a { color: #111111; }
+		a:hover { opacity: 0.6; }
+
+		/* ── Layout ─────────────────────────────────────────── */
+		header, main, footer {
+			max-width: 860px;
+			margin: 0 auto;
+			padding: 0 2rem;
+		}
+
+		/* ── Header ─────────────────────────────────────────── */
+		header {
+			padding-top: 3rem;
+			padding-bottom: 3rem;
+			border-bottom: 1px solid #111111;
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+		}
+
+		header h1 {
+			font-size: 2rem;
+			font-weight: normal;
+			letter-spacing: 0.04em;
+		}
+
+		/* ── Language selector ───────────────────────────────── */
+		.lang-switcher {
+			display: flex;
+			gap: 0.5rem;
+			font-size: 0.8rem;
+			letter-spacing: 0.08em;
+			font-family: Georgia, serif;
+		}
+
+		.lang-switcher button {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: #888888;
+			padding: 0;
+			font-size: 0.8rem;
+			font-family: inherit;
+			letter-spacing: 0.08em;
+		}
+
+		.lang-switcher button.active {
+			color: #111111;
+			font-weight: bold;
+		}
+
+		.lang-switcher button:hover { opacity: 0.6; }
+		.lang-divider { color: #cccccc; }
+
+		/* ── Main ────────────────────────────────────────────── */
+		main {
+			padding-top: 4rem;
+			padding-bottom: 6rem;
+		}
+
+		.back-link {
+			display: inline-block;
+			font-size: 0.8rem;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			text-decoration: none;
+			margin-bottom: 3rem;
+			color: #888888;
+		}
+
+		.back-link:hover { color: #111111; opacity: 1; }
+
+		/* ── Page hero ───────────────────────────────────────── */
+		.page-hero {
+			padding-bottom: 3rem;
+			border-bottom: 1px solid #111111;
+			margin-bottom: 1.5rem;
+		}
+
+		.page-badge {
+			display: inline-block;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.16em;
+			font-weight: bold;
+			color: #888888;
+			border: 1px solid #cccccc;
+			padding: 0.25rem 0.6rem;
+			margin-bottom: 1.25rem;
+		}
+
+		.page-title {
+			font-size: clamp(2.2rem, 6vw, 3.5rem);
+			font-weight: normal;
+			letter-spacing: 0.02em;
+			line-height: 1.15;
+			margin-bottom: 0.75rem;
+		}
+
+		.page-subtitle {
+			font-size: 1.15rem;
+			color: #555555;
+			letter-spacing: 0.01em;
+		}
+
+		/* ── One-liner ───────────────────────────────────────── */
+		.one-liner {
+			border-left: 3px solid #111111;
+			padding: 1.5rem 0 1.5rem 2rem;
+			margin: 3rem 0;
+			font-size: 1.25rem;
+			line-height: 1.6;
+			color: #111111;
+		}
+
+		/* ── Pitch sections ──────────────────────────────────── */
+		.pitch-section {
+			margin-bottom: 3rem;
+			padding-bottom: 3rem;
+			border-bottom: 1px solid #eeeeee;
+		}
+
+		.pitch-section:last-of-type {
+			border-bottom: none;
+		}
+
+		.pitch-meta {
+			display: flex;
+			align-items: baseline;
+			gap: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.pitch-number {
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.16em;
+			font-weight: bold;
+			color: #aaaaaa;
+			min-width: 2rem;
+		}
+
+		.pitch-heading {
+			font-size: 1rem;
+			font-weight: bold;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			color: #111111;
+		}
+
+		.pitch-body {
+			font-size: 0.95rem;
+			color: #333333;
+			line-height: 1.8;
+		}
+
+		.pitch-body p {
+			margin-bottom: 0.75rem;
+		}
+
+		.pitch-body p:last-child {
+			margin-bottom: 0;
+		}
+
+		/* ── Lists ───────────────────────────────────────────── */
+		.bullet-list {
+			list-style: none;
+			margin: 0.5rem 0;
+		}
+
+		.bullet-list li {
+			padding-left: 1.25rem;
+			position: relative;
+			margin-bottom: 0.4rem;
+			font-size: 0.95rem;
+			color: #333333;
+			line-height: 1.7;
+		}
+
+		.bullet-list li::before {
+			content: "—";
+			position: absolute;
+			left: 0;
+			color: #aaaaaa;
+		}
+
+		/* ── Steps (numbered) ────────────────────────────────── */
+		.steps-list {
+			list-style: none;
+			margin: 0.75rem 0;
+			counter-reset: step-counter;
+		}
+
+		.steps-list li {
+			counter-increment: step-counter;
+			display: flex;
+			align-items: baseline;
+			gap: 1rem;
+			margin-bottom: 0.6rem;
+			font-size: 0.95rem;
+			color: #333333;
+		}
+
+		.steps-list li::before {
+			content: counter(step-counter);
+			font-size: 0.7rem;
+			font-weight: bold;
+			letter-spacing: 0.08em;
+			color: #aaaaaa;
+			min-width: 1.2rem;
+		}
+
+		/* ── KPI highlight ───────────────────────────────────── */
+		.kpi-box {
+			display: inline-block;
+			border: 1px solid #111111;
+			padding: 0.75rem 1.25rem;
+			margin-top: 1rem;
+			font-size: 0.85rem;
+			letter-spacing: 0.04em;
+		}
+
+		.kpi-box strong {
+			display: block;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			color: #888888;
+			margin-bottom: 0.2rem;
+		}
+
+		/* ── Ask / raise ─────────────────────────────────────── */
+		.raise-amount {
+			font-size: clamp(2rem, 5vw, 3rem);
+			font-weight: normal;
+			letter-spacing: 0.02em;
+			margin: 1rem 0 0.5rem;
+		}
+
+		/* ── Two-column grid ─────────────────────────────────── */
+		.two-col {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.5rem;
+			margin-top: 1rem;
+		}
+
+		@media (max-width: 600px) {
+			.two-col { grid-template-columns: 1fr; }
+		}
+
+		.col-block {
+			border: 1px solid #dddddd;
+			padding: 1.25rem;
+		}
+
+		.col-block h4 {
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			font-weight: bold;
+			margin-bottom: 0.75rem;
+			color: #111111;
+		}
+
+		.col-block ul {
+			list-style: none;
+		}
+
+		.col-block ul li {
+			font-size: 0.88rem;
+			color: #444444;
+			padding-left: 1rem;
+			position: relative;
+			margin-bottom: 0.35rem;
+			line-height: 1.6;
+		}
+
+		.col-block ul li::before {
+			content: "·";
+			position: absolute;
+			left: 0;
+			color: #aaaaaa;
+		}
+
+		/* ── Property image ──────────────────────────────────── */
+		.property-img {
+			width: 100%;
+			display: block;
+			margin: 1.25rem 0 0.75rem;
+			border: 1px solid #eeeeee;
+		}
+
+		.img-caption {
+			font-size: 0.78rem;
+			color: #888888;
+			letter-spacing: 0.04em;
+			margin-bottom: 0;
+		}
+
+		/* ── Closing ─────────────────────────────────────────── */
+		.closing-block {
+			border-top: 3px solid #111111;
+			padding-top: 3rem;
+			margin-top: 4rem;
+		}
+
+		.closing-block h3 {
+			font-size: clamp(1.4rem, 4vw, 2rem);
+			font-weight: normal;
+			line-height: 1.3;
+			letter-spacing: 0.02em;
+			margin-bottom: 0.75rem;
+		}
+
+		.closing-block p {
+			font-size: 1rem;
+			color: #555555;
+		}
+
+		/* ── Footer ─────────────────────────────────────────── */
+		footer {
+			padding-top: 1.5rem;
+			padding-bottom: 2rem;
+			border-top: 1px solid #dddddd;
+			font-size: 0.8rem;
+			color: #888888;
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<h1><a href="/" style="text-decoration:none;">AI Labs . Lat</a></h1>
+		<div class="lang-switcher">
+			<button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+			<span class="lang-divider">|</span>
+			<button onclick="setLang('es')" id="btn-es">ES</button>
+		</div>
+	</header>
+
+	<main>
+		<a href="/projects.html" class="back-link" data-i18n="backLink">← Projects</a>
+
+		<!-- Hero -->
+		<div class="page-hero">
+			<span class="page-badge" data-i18n="badge">Pre-Seed</span>
+			<h2 class="page-title">Rent Tokenization</h2>
+			<p class="page-subtitle" data-i18n="subtitle">Blockchain-Backed Fractional Real Estate Investment</p>
+		</div>
+
+		<!-- One-liner -->
+		<blockquote class="one-liner" data-i18n="oneLiner">
+			Own a piece. Earn the rent. Trust the contract.
+		</blockquote>
+
+		<!-- 1. Problem -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">01</span>
+				<span class="pitch-heading">Problem</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="bullet-list">
+					<li>Real estate investment requires high minimum capital and private relationships</li>
+					<li>Cross-border entry is blocked by local legal complexity</li>
+					<li>Rental-income streams are inaccessible to retail investors</li>
+					<li>No transparent, liquid secondary market for real estate positions</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 2. Solution -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">02</span>
+				<span class="pitch-heading">Solution</span>
+			</div>
+			<div class="pitch-body">
+				<p>A regulated marketplace where real estate developers list projects and investors acquire fractional economic interests through blockchain-based tokens.</p>
+				<p>Each token represents a clearly documented legal right — SPV equity, trust interest, or contractual claim — not vague crypto exposure. The platform is a regulated real-world asset marketplace first, and a crypto application second.</p>
+				<p><strong>Two layers:</strong></p>
+				<ul class="bullet-list">
+					<li><strong>Legal layer</strong> — contracts, ownership structures, investor rights, issuer obligations, disclosures, compliance controls, and transfer restrictions</li>
+					<li><strong>Token layer</strong> — blockchain-based representation of rights, distribution accounting, investor registry, secondary transfer controls, and governance workflows</li>
+				</ul>
+				<div class="kpi-box">
+					<strong>Core Principle</strong>
+					Legal clarity + blockchain transparency
+				</div>
+			</div>
+		</div>
+
+		<!-- 3. Legal Structure -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">03</span>
+				<span class="pitch-heading">Legal Structure</span>
+			</div>
+			<div class="pitch-body">
+				<p>Each listed project is held in a project-specific SPV. Investors acquire tokenized economic interests in that SPV — or a legally documented contractual claim against it.</p>
+				<img src="/rt-property.jpg" alt="Example investment property" class="property-img" />
+				<p class="img-caption">Example asset type — rental real estate development project</p>
+				<p style="margin-top:1.25rem;"><strong>Investor value proposition:</strong></p>
+				<ul class="bullet-list">
+					<li>Fractional ownership or economic participation</li>
+					<li>Rental-income distributions</li>
+					<li>Exposure to real estate appreciation</li>
+					<li>Transparent project reporting</li>
+					<li>On-chain registry and distribution history</li>
+					<li>Potential secondary liquidity</li>
+				</ul>
+				<p style="margin-top:1.25rem;"><strong>Developer value proposition:</strong></p>
+				<ul class="bullet-list">
+					<li>Broader investor base and faster subscription</li>
+					<li>Automated compliance gates</li>
+					<li>Transparent cap table and investor ledger</li>
+					<li>Tokenized distribution workflows</li>
+				</ul>
+				<div class="kpi-box" style="margin-top:1.25rem;">
+					<strong>Key Design Rule</strong>
+					Legal register is authoritative — blockchain is the transparency layer
+				</div>
+			</div>
+		</div>
+
+		<!-- 4. Platform Participants -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">04</span>
+				<span class="pitch-heading">Platform Participants</span>
+			</div>
+			<div class="pitch-body">
+				<div class="two-col">
+					<div class="col-block">
+						<h4>Investors</h4>
+						<ul>
+							<li>Retail (where permitted)</li>
+							<li>Accredited / sophisticated</li>
+							<li>Institutional &amp; corporate</li>
+							<li>KYC + eligibility gated</li>
+						</ul>
+					</div>
+					<div class="col-block">
+						<h4>Real Estate Developers</h4>
+						<ul>
+							<li>New development projects</li>
+							<li>Rental housing &amp; commercial</li>
+							<li>Short-term / hospitality</li>
+							<li>KYB + project due diligence</li>
+						</ul>
+					</div>
+					<div class="col-block">
+						<h4>Platform Operator</h4>
+						<ul>
+							<li>Marketplace &amp; compliance</li>
+							<li>Token infrastructure</li>
+							<li>Investor registry</li>
+							<li>Distribution &amp; reporting</li>
+						</ul>
+					</div>
+					<div class="col-block">
+						<h4>Legal Administrator</h4>
+						<ul>
+							<li>Independent trustee / nominee</li>
+							<li>Holds assets, administers docs</li>
+							<li>Protects investor rights</li>
+							<li>Executes governance votes</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 5. Product Experience — MVP -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">05</span>
+				<span class="pitch-heading">Product Experience — MVP</span>
+			</div>
+			<div class="pitch-body">
+				<p>A controlled, legally conservative pilot: one project, verified investors, restricted tokens, and clear legal documentation throughout.</p>
+				<p style="margin-top:1rem;"><strong>Investor flow</strong></p>
+				<ol class="steps-list">
+					<li>Create account and complete KYC</li>
+					<li>Pass eligibility assessment</li>
+					<li>Review project documentation and risk disclosures</li>
+					<li>Execute subscription agreement</li>
+					<li>Receive permissioned tokens after approval</li>
+					<li>Track distributions and holding history on dashboard</li>
+				</ol>
+				<p style="margin-top:1rem;"><strong>Developer flow</strong></p>
+				<ol class="steps-list">
+					<li>Complete KYB verification</li>
+					<li>Submit project documents and financial disclosures</li>
+					<li>Pass due diligence workflow</li>
+					<li>List project and raise capital</li>
+					<li>Upload rent income for distribution calculation</li>
+				</ol>
+			</div>
+		</div>
+
+		<!-- 6. Risks & Mitigation -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">06</span>
+				<span class="pitch-heading">Risks &amp; Mitigation</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="bullet-list">
+					<li><strong>Legal / regulatory:</strong> assume securities regulation applies; use compliant offering exemptions; restrict transfers; maintain eligibility checks</li>
+					<li><strong>Ownership mismatch:</strong> clearly define token rights; show legal structure on each listing; require investor acknowledgement</li>
+					<li><strong>Liquidity:</strong> disclose limits upfront; provide controlled secondary process; offer buyout voting; avoid guaranteed liquidity language</li>
+					<li><strong>Smart contract:</strong> audited contracts; multisig on all privileged actions; timelocks for upgrades; full audit trail of deployments and changes</li>
+					<li><strong>Compliance:</strong> whitelisted wallets only; KYT monitoring; on-chain transfer checks; freeze powers where legally required</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 7. The Ask -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">07</span>
+				<span class="pitch-heading">The Ask</span>
+			</div>
+			<div class="pitch-body">
+				<p class="raise-amount">$250,000</p>
+				<p style="color:#888888; font-size:0.85rem; margin-bottom:1.5rem;">Pre-seed round</p>
+				<div style="display:grid; grid-template-columns:1fr; gap:1rem; margin-top:1.25rem; max-width:320px;">
+					<div style="border-top:2px solid #111111; padding-top:0.75rem;">
+						<h4 style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.12em; font-weight:bold; margin-bottom:0.3rem; color:#555555;">Developers</h4>
+						<p style="font-size:0.9rem; color:#333333;">Engineering talent to build the platform, token infrastructure, compliance systems, and investor workflows</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Closing -->
+		<div class="closing-block">
+			<h3>Not crypto exposure to real estate.</h3>
+			<p>Legally documented real estate investment, with blockchain-based administration, transferability, transparency, and automation.</p>
+		</div>
+
+		<!-- Investment form -->
+		<div style="border-top:3px solid #111111; padding-top:3rem; margin-top:4rem;">
+			<p style="font-size:1.05rem; color:#222222; line-height:1.8; margin-bottom:1.5rem;" data-i18n="body4">We are about to open a private investment round for selected investors. See if you qualify:</p>
+			<iframe
+				src="https://docs.google.com/forms/d/e/1FAIpQLSdcR_wlz4catCjVU9f23gsrjimXqF6R7wQrJSXD3L47ZQGKxQ/viewform?embedded=true"
+				width="100%"
+				height="600"
+				frameborder="0"
+				marginheight="0"
+				marginwidth="0"
+				style="border:1px solid #eeeeee;"
+			>Loading…</iframe>
+		</div>
+
+	</main>
+
+	<footer>
+		<p data-i18n="footer">© 2026 AI Labs . Lat. All rights reserved.</p>
+	</footer>
+
+	<script>
+		const translations = {
+			en: {
+				backLink: "← Projects",
+				badge: "Pre-Seed",
+				subtitle: "Blockchain-Backed Fractional Real Estate Investment",
+				oneLiner: "Own a piece. Earn the rent. Trust the contract.",
+				body4: "We are about to open a private investment round for selected investors. See if you qualify:",
+				footer: "© 2026 AI Labs . Lat. All rights reserved.",
+			},
+			es: {
+				backLink: "← Proyectos",
+				badge: "Pre-Seed",
+				subtitle: "Inversión Fraccionada en Bienes Raíces con Blockchain",
+				oneLiner: "Sé dueño de una parte. Gana el alquiler. Confía en el contrato.",
+				body4: "Estamos a punto de abrir una ronda de inversión privada para inversores seleccionados. Descubre si calificas:",
+				footer: "© 2026 AI Labs . Lat. Todos los derechos reservados.",
+			},
+		};
+
+		function applyLang(lang) {
+			const t = translations[lang];
+			document.querySelectorAll('[data-i18n]').forEach(el => {
+				const key = el.getAttribute('data-i18n');
+				if (t[key] !== undefined) el.textContent = t[key];
+			});
+			document.documentElement.lang = lang;
+			document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+			document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+		}
+
+		function setLang(lang) {
+			localStorage.setItem('ailabs-lang', lang);
+			applyLang(lang);
+		}
+
+		const saved = localStorage.getItem('ailabs-lang') || 'en';
+		applyLang(saved);
+	</script>
+
+</body>
+</html>

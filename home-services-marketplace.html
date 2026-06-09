@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Service Now / Service Ya — Home Services Marketplace · AI Labs . Lat</title>
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+		body {
+			font-family: Georgia, 'Times New Roman', serif;
+			background: #ffffff;
+			color: #111111;
+			line-height: 1.7;
+		}
+
+		a { color: #111111; }
+		a:hover { opacity: 0.6; }
+
+		/* ── Layout ─────────────────────────────────────────── */
+		header, main, footer {
+			max-width: 860px;
+			margin: 0 auto;
+			padding: 0 2rem;
+		}
+
+		/* ── Header ─────────────────────────────────────────── */
+		header {
+			padding-top: 3rem;
+			padding-bottom: 3rem;
+			border-bottom: 1px solid #111111;
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+		}
+
+		header h1 {
+			font-size: 2rem;
+			font-weight: normal;
+			letter-spacing: 0.04em;
+		}
+
+		/* ── Language selector ───────────────────────────────── */
+		.lang-switcher {
+			display: flex;
+			gap: 0.5rem;
+			font-size: 0.8rem;
+			letter-spacing: 0.08em;
+			font-family: Georgia, serif;
+		}
+
+		.lang-switcher button {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: #888888;
+			padding: 0;
+			font-size: 0.8rem;
+			font-family: inherit;
+			letter-spacing: 0.08em;
+		}
+
+		.lang-switcher button.active {
+			color: #111111;
+			font-weight: bold;
+		}
+
+		.lang-switcher button:hover { opacity: 0.6; }
+		.lang-divider { color: #cccccc; }
+
+		/* ── Main ────────────────────────────────────────────── */
+		main {
+			padding-top: 4rem;
+			padding-bottom: 6rem;
+		}
+
+		.back-link {
+			display: inline-block;
+			font-size: 0.8rem;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			text-decoration: none;
+			margin-bottom: 3rem;
+			color: #888888;
+		}
+
+		.back-link:hover { color: #111111; opacity: 1; }
+
+		/* ── Page hero ───────────────────────────────────────── */
+		.page-hero {
+			padding-bottom: 3rem;
+			border-bottom: 1px solid #111111;
+			margin-bottom: 1.5rem;
+		}
+
+		.page-badge {
+			display: inline-block;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.16em;
+			font-weight: bold;
+			color: #888888;
+			border: 1px solid #cccccc;
+			padding: 0.25rem 0.6rem;
+			margin-bottom: 1.25rem;
+		}
+
+		.page-title {
+			font-size: clamp(2.2rem, 6vw, 3.5rem);
+			font-weight: normal;
+			letter-spacing: 0.02em;
+			line-height: 1.15;
+			margin-bottom: 0.75rem;
+		}
+
+		.page-subtitle {
+			font-size: 1.15rem;
+			color: #555555;
+			letter-spacing: 0.01em;
+		}
+
+		/* ── One-liner ───────────────────────────────────────── */
+		.one-liner {
+			border-left: 3px solid #111111;
+			padding: 1.5rem 0 1.5rem 2rem;
+			margin: 3rem 0;
+			font-size: 1.25rem;
+			line-height: 1.6;
+			color: #111111;
+		}
+
+		/* ── Pitch sections ──────────────────────────────────── */
+		.pitch-section {
+			margin-bottom: 3rem;
+			padding-bottom: 3rem;
+			border-bottom: 1px solid #eeeeee;
+		}
+
+		.pitch-section:last-of-type {
+			border-bottom: none;
+		}
+
+		.pitch-meta {
+			display: flex;
+			align-items: baseline;
+			gap: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.pitch-number {
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.16em;
+			font-weight: bold;
+			color: #aaaaaa;
+			min-width: 2rem;
+		}
+
+		.pitch-heading {
+			font-size: 1rem;
+			font-weight: bold;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			color: #111111;
+		}
+
+		.pitch-body {
+			font-size: 0.95rem;
+			color: #333333;
+			line-height: 1.8;
+		}
+
+		.pitch-body p {
+			margin-bottom: 0.75rem;
+		}
+
+		.pitch-body p:last-child {
+			margin-bottom: 0;
+		}
+
+		/* ── Lists ───────────────────────────────────────────── */
+		.bullet-list {
+			list-style: none;
+			margin: 0.5rem 0;
+		}
+
+		.bullet-list li {
+			padding-left: 1.25rem;
+			position: relative;
+			margin-bottom: 0.4rem;
+			font-size: 0.95rem;
+			color: #333333;
+			line-height: 1.7;
+		}
+
+		.bullet-list li::before {
+			content: "—";
+			position: absolute;
+			left: 0;
+			color: #aaaaaa;
+		}
+
+		/* ── Steps (numbered) ────────────────────────────────── */
+		.steps-list {
+			list-style: none;
+			margin: 0.75rem 0;
+			counter-reset: step-counter;
+		}
+
+		.steps-list li {
+			counter-increment: step-counter;
+			display: flex;
+			align-items: baseline;
+			gap: 1rem;
+			margin-bottom: 0.6rem;
+			font-size: 0.95rem;
+			color: #333333;
+		}
+
+		.steps-list li::before {
+			content: counter(step-counter);
+			font-size: 0.7rem;
+			font-weight: bold;
+			letter-spacing: 0.08em;
+			color: #aaaaaa;
+			min-width: 1.2rem;
+		}
+
+		/* ── KPI highlight ───────────────────────────────────── */
+		.kpi-box {
+			display: inline-block;
+			border: 1px solid #111111;
+			padding: 0.75rem 1.25rem;
+			margin-top: 1rem;
+			font-size: 0.85rem;
+			letter-spacing: 0.04em;
+		}
+
+		.kpi-box strong {
+			display: block;
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			color: #888888;
+			margin-bottom: 0.2rem;
+		}
+
+		/* ── Phase blocks ────────────────────────────────────── */
+		.phase-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			gap: 1.5rem;
+			margin-top: 1rem;
+		}
+
+		.phase-block {
+			border: 1px solid #dddddd;
+			padding: 1.25rem;
+		}
+
+		.phase-block h4 {
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			font-weight: bold;
+			margin-bottom: 0.75rem;
+			color: #111111;
+		}
+
+		.phase-block ul {
+			list-style: none;
+		}
+
+		.phase-block ul li {
+			font-size: 0.88rem;
+			color: #444444;
+			padding-left: 1rem;
+			position: relative;
+			margin-bottom: 0.35rem;
+			line-height: 1.6;
+		}
+
+		.phase-block ul li::before {
+			content: "·";
+			position: absolute;
+			left: 0;
+			color: #aaaaaa;
+		}
+
+		/* ── Roadmap ─────────────────────────────────────────── */
+		.roadmap-list {
+			list-style: none;
+			margin: 0.5rem 0;
+		}
+
+		.roadmap-list li {
+			display: flex;
+			gap: 1.5rem;
+			align-items: baseline;
+			padding: 0.75rem 0;
+			border-bottom: 1px solid #f0f0f0;
+			font-size: 0.95rem;
+			color: #333333;
+		}
+
+		.roadmap-list li:last-child { border-bottom: none; }
+
+		.roadmap-period {
+			font-size: 0.72rem;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			font-weight: bold;
+			color: #888888;
+			min-width: 8rem;
+			flex-shrink: 0;
+		}
+
+		/* ── Ask / raise ─────────────────────────────────────── */
+		.raise-amount {
+			font-size: clamp(2rem, 5vw, 3rem);
+			font-weight: normal;
+			letter-spacing: 0.02em;
+			margin: 1rem 0 0.5rem;
+		}
+
+		.funds-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1rem;
+			margin-top: 1.25rem;
+		}
+
+		@media (max-width: 600px) {
+			.funds-grid { grid-template-columns: 1fr; }
+		}
+
+		.funds-item {
+			border-top: 2px solid #111111;
+			padding-top: 0.75rem;
+		}
+
+		.funds-item h4 {
+			font-size: 0.7rem;
+			text-transform: uppercase;
+			letter-spacing: 0.12em;
+			font-weight: bold;
+			margin-bottom: 0.3rem;
+			color: #555555;
+		}
+
+		.funds-item p {
+			font-size: 0.9rem;
+			color: #333333;
+		}
+
+		/* ── Closing ─────────────────────────────────────────── */
+		.closing-block {
+			border-top: 3px solid #111111;
+			padding-top: 3rem;
+			margin-top: 4rem;
+		}
+
+		.closing-block h3 {
+			font-size: clamp(1.4rem, 4vw, 2rem);
+			font-weight: normal;
+			line-height: 1.3;
+			letter-spacing: 0.02em;
+			margin-bottom: 0.75rem;
+		}
+
+		.closing-block p {
+			font-size: 1rem;
+			color: #555555;
+		}
+
+		/* ── Footer ─────────────────────────────────────────── */
+		footer {
+			padding-top: 1.5rem;
+			padding-bottom: 2rem;
+			border-top: 1px solid #dddddd;
+			font-size: 0.8rem;
+			color: #888888;
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<h1><a href="/" style="text-decoration:none;">AI Labs . Lat</a></h1>
+		<div class="lang-switcher">
+			<button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+			<span class="lang-divider">|</span>
+			<button onclick="setLang('es')" id="btn-es">ES</button>
+		</div>
+	</header>
+
+	<main>
+		<a href="/projects.html" class="back-link" data-i18n="backLink">← Projects</a>
+
+		<!-- Hero -->
+		<div class="page-hero">
+			<span class="page-badge">Pre-Seed</span>
+			<h2 class="page-title">Service Now / Service Ya</h2>
+			<p class="page-subtitle">Real-Time Bidding for Local Services</p>
+		</div>
+
+		<!-- One-liner -->
+		<blockquote class="one-liner">
+			Post a job. Get 3–5 competitive offers in minutes. Choose the best.
+		</blockquote>
+
+		<!-- 1. Problem -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">01</span>
+				<span class="pitch-heading">Problem</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="bullet-list">
+					<li>Local services are slow to source — calls, messages, no responses</li>
+					<li>Prices vary widely with little transparency</li>
+					<li>Suppliers have idle capacity but no demand visibility</li>
+					<li>Existing marketplaces rely on fixed listings and inbound discovery</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 2. Solution -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">02</span>
+				<span class="pitch-heading">Solution</span>
+			</div>
+			<div class="pitch-body">
+				<p>A demand-first marketplace:</p>
+				<ul class="bullet-list">
+					<li>Buyers post a job — scope, location, timing</li>
+					<li>Nearby suppliers receive instant alerts</li>
+					<li>Suppliers bid in real time — price, ETA, conditions</li>
+					<li>Buyer selects and pays</li>
+				</ul>
+				<div class="kpi-box">
+					<strong>Core Value</strong>
+					Speed + Competition
+				</div>
+			</div>
+		</div>
+
+		<!-- 3. Initial Wedge -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">03</span>
+				<span class="pitch-heading">Initial Wedge</span>
+			</div>
+			<div class="pitch-body">
+				<p><strong>Category:</strong> Home services — plumbing, electrical, repairs<br>
+				<strong>Geography:</strong> Single city (launch in one urban area)</p>
+				<p style="margin-top:1rem;">Why this works:</p>
+				<ul class="bullet-list">
+					<li>High urgency — same-day needs</li>
+					<li>High price dispersion</li>
+					<li>Fragmented, under-digitized supply</li>
+					<li>Suppliers motivated to fill idle time</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 4. Product Experience -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">04</span>
+				<span class="pitch-heading">Product Experience</span>
+			</div>
+			<div class="pitch-body">
+				<ol class="steps-list">
+					<li>Post request — under 60 seconds</li>
+					<li>Receive first bid in minutes</li>
+					<li>Compare 3–5 offers</li>
+					<li>Select supplier</li>
+					<li>Pay + track fulfillment</li>
+				</ol>
+				<div class="kpi-box">
+					<strong>North-Star Metric</strong>
+					Time to first bid (minutes)
+				</div>
+			</div>
+		</div>
+
+		<!-- 5. Why Now -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">05</span>
+				<span class="pitch-heading">Why Now</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="bullet-list">
+					<li>Smartphones + push notifications enable instant supplier response</li>
+					<li>Messaging behavior normalizes rapid real-time interaction</li>
+					<li>No dominant player in LATAM for real-time bidding in local services</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 6. Business Model -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">06</span>
+				<span class="pitch-heading">Business Model</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="bullet-list">
+					<li>5–10% take rate per completed job</li>
+					<li>Supplier boosts — priority alerts and visibility</li>
+					<li>Future: subscription for high-frequency suppliers</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 7. Token (deferred) -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">07</span>
+				<span class="pitch-heading">Token — Deferred</span>
+			</div>
+			<div class="pitch-body">
+				<p>Not required for product-market fit. Potential later uses:</p>
+				<ul class="bullet-list">
+					<li>Supplier staking to access premium leads</li>
+					<li>Fee discounts for token holders</li>
+					<li>Reputation weighting</li>
+				</ul>
+				<p style="margin-top:0.75rem; color:#888888; font-size:0.9rem;">Focus: validate marketplace first.</p>
+			</div>
+		</div>
+
+		<!-- 8. Market -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">08</span>
+				<span class="pitch-heading">Market</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="bullet-list">
+					<li><strong>Entry:</strong> local services — large, fragmented, offline-heavy</li>
+					<li><strong>Expansion:</strong> additional service categories → logistics → B2B jobs</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 9. Competition -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">09</span>
+				<span class="pitch-heading">Competition</span>
+			</div>
+			<div class="pitch-body">
+				<p><strong>Indirect</strong></p>
+				<ul class="bullet-list">
+					<li>Listing-based marketplaces — fixed price, slow response</li>
+					<li>Social groups and classifieds — unstructured</li>
+				</ul>
+				<p style="margin-top:1rem;"><strong>Direct — open reverse auction at consumer level in LATAM</strong></p>
+				<ul class="bullet-list">
+					<li>None identified</li>
+				</ul>
+				<p style="margin-top:1rem;"><strong>Enterprise tools</strong></p>
+				<ul class="bullet-list">
+					<li>Closed procurement systems — not comparable</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 10. Traction -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">10</span>
+				<span class="pitch-heading">Traction</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="bullet-list">
+					<li>Working prototype — demo available</li>
+					<li>Initial supplier pipeline identified</li>
+					<li>Pilot city selected</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 11. Go-To-Market -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">11</span>
+				<span class="pitch-heading">Go-To-Market — Liquidity Engine</span>
+			</div>
+			<div class="pitch-body">
+				<div class="phase-grid">
+					<div class="phase-block">
+						<h4>Phase 1 — Supply Density</h4>
+						<ul>
+							<li>Onboard 50–100 suppliers in one category</li>
+							<li>Zero fees + guaranteed lead flow</li>
+						</ul>
+					</div>
+					<div class="phase-block">
+						<h4>Phase 2 — Demand Injection</h4>
+						<ul>
+							<li>Manual acquisition via local channels and network</li>
+							<li>Drive first 20–50 transactions</li>
+						</ul>
+					</div>
+					<div class="phase-block">
+						<h4>Phase 3 — Enforce Competition</h4>
+						<ul>
+							<li>Ensure ≥ 3 bids per request</li>
+							<li>Real-time notifications + manual ops</li>
+						</ul>
+					</div>
+				</div>
+				<div class="kpi-box" style="margin-top:1.5rem;">
+					<strong>Critical KPI</strong>
+					Time to first bid &lt; 10 minutes
+				</div>
+			</div>
+		</div>
+
+		<!-- 12. Roadmap -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">12</span>
+				<span class="pitch-heading">Roadmap</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="roadmap-list">
+					<li>
+						<span class="roadmap-period">0 – 3 months</span>
+						First transactions, validate bid density
+					</li>
+					<li>
+						<span class="roadmap-period">3 – 6 months</span>
+						Repeat usage, improve response time
+					</li>
+					<li>
+						<span class="roadmap-period">6 – 12 months</span>
+						Expand categories and geography
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 13. Team -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">13</span>
+				<span class="pitch-heading">Team</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="bullet-list">
+					<li><strong>Founder / CEO</strong> — 40+ years in IT</li>
+					<li><strong>CTO</strong> — 15+ years engineering</li>
+				</ul>
+				<p style="margin-top:0.75rem; color:#888888; font-size:0.9rem;">Concrete execution proof: systems built, operations, scale — available on request.</p>
+			</div>
+		</div>
+
+		<!-- 14. Risks & Mitigation -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">14</span>
+				<span class="pitch-heading">Risks &amp; Mitigation</span>
+			</div>
+			<div class="pitch-body">
+				<ul class="bullet-list">
+					<li><strong>Low liquidity:</strong> focus single category + city until density is proven</li>
+					<li><strong>Slow bids:</strong> supplier incentives and push notifications</li>
+					<li><strong>Quality control:</strong> ratings system + repeat selection signals</li>
+					<li><strong>Spam bids:</strong> bid limits and reputation scoring — token-based if needed later</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 15. Ask -->
+		<div class="pitch-section">
+			<div class="pitch-meta">
+				<span class="pitch-number">15</span>
+				<span class="pitch-heading">The Ask</span>
+			</div>
+			<div class="pitch-body">
+				<p class="raise-amount">$250,000</p>
+				<p style="color:#888888; font-size:0.85rem; margin-bottom:1.5rem;">Pre-seed round</p>
+				<div class="funds-grid">
+					<div class="funds-item">
+						<h4>Product Iteration</h4>
+						<p>Shipping, testing, and refining the core bidding experience</p>
+					</div>
+					<div class="funds-item">
+						<h4>Supplier Acquisition</h4>
+						<p>Building initial supply density in the pilot city</p>
+					</div>
+					<div class="funds-item">
+						<h4>Local Operations</h4>
+						<p>On-the-ground execution for the first city launch</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Closing -->
+		<div class="closing-block">
+			<h3>Speed + competition at the point of demand.</h3>
+			<p>Service Now / Service Ya turns local services into a real-time market.</p>
+		</div>
+
+		<!-- Investment form -->
+		<div style="border-top:3px solid #111111; padding-top:3rem; margin-top:4rem;">
+			<p style="font-size:1.05rem; color:#222222; line-height:1.8; margin-bottom:1.5rem;" data-i18n="body4">We are about to open a private investment round for selected investors. See if you qualify:</p>
+			<iframe
+				src="https://docs.google.com/forms/d/e/1FAIpQLSdcR_wlz4catCjVU9f23gsrjimXqF6R7wQrJSXD3L47ZQGKxQ/viewform?embedded=true"
+				width="100%"
+				height="600"
+				frameborder="0"
+				marginheight="0"
+				marginwidth="0"
+				style="border:1px solid #eeeeee;"
+			>Loading…</iframe>
+		</div>
+
+	</main>
+
+	<footer>
+		<p data-i18n="footer">© 2026 AI Labs . Lat. All rights reserved.</p>
+	</footer>
+
+	<script>
+		const translations = {
+			en: {
+				backLink: "← Projects",
+				body4: "We are about to open a private investment round for selected investors. See if you qualify:",
+				footer: "© 2026 AI Labs . Lat. All rights reserved.",
+			},
+			es: {
+				backLink: "← Proyectos",
+				body4: "Estamos a punto de abrir una ronda de inversión privada para inversores seleccionados. Descubre si calificas:",
+				footer: "© 2026 AI Labs . Lat. Todos los derechos reservados.",
+			},
+		};
+
+		function applyLang(lang) {
+			const t = translations[lang];
+			document.querySelectorAll('[data-i18n]').forEach(el => {
+				const key = el.getAttribute('data-i18n');
+				if (t[key] !== undefined) el.textContent = t[key];
+			});
+			document.documentElement.lang = lang;
+			document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+			document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+		}
+
+		function setLang(lang) {
+			localStorage.setItem('ailabs-lang', lang);
+			applyLang(lang);
+		}
+
+		const saved = localStorage.getItem('ailabs-lang') || 'en';
+		applyLang(saved);
+	</script>
+
+</body>
+</html>
