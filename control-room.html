@@ -129,6 +129,40 @@
 			color: #111111;
 		}
 
+		/* ── PDF section ────────────────────────────────────── */
+		.pdf-section {
+			margin: 0 0 4rem;
+			border-top: 1px solid #dddddd;
+			padding-top: 2.5rem;
+			position: relative;
+			width: min(1200px, calc(100vw - 2rem));
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.pdf-section h3 {
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.14em;
+			color: #888888;
+			font-weight: normal;
+			margin-bottom: 1.25rem;
+		}
+
+		.pdf-embed {
+			width: 100%;
+			height: 680px;
+			border: 1px solid #dddddd;
+		}
+
+		.pdf-fallback {
+			margin-top: 0.75rem;
+			font-size: 0.8rem;
+			color: #888888;
+		}
+
+		.pdf-fallback a { color: #555555; }
+
 		/* ── Footer ─────────────────────────────────────────── */
 		footer {
 			padding-top: 1.5rem;
@@ -165,6 +199,19 @@
 			An IDE that thinks in AI, not in files.
 		</blockquote>
 
+		<!-- Investor presentation PDF -->
+		<div class="pdf-section">
+			<h3 data-i18n="pdfHeading">Investor Presentation</h3>
+			<iframe
+				class="pdf-embed"
+				src="/control-room-investor-presentation.pdf"
+				title="Control Room Investor Presentation"
+			></iframe>
+			<p class="pdf-fallback">
+				<a href="/control-room-investor-presentation.pdf" target="_blank" data-i18n="pdfLink">Open PDF in new tab ↗</a>
+			</p>
+		</div>
+
 		<!-- Investment form -->
 		<div style="border-top:3px solid #111111; padding-top:3rem; margin-top:4rem;">
 			<p style="font-size:1.05rem; color:#222222; line-height:1.8; margin-bottom:1.5rem;" data-i18n="body4">We are about to open a private investment round for selected investors. See if you qualify:</p>
@@ -193,6 +240,8 @@
 				subtitle: "The workspace built for the AI era.",
 				oneLiner: "An IDE that thinks in AI, not in files.",
 				body4: "We are about to open a private investment round for selected investors. See if you qualify:",
+				pdfHeading: "Investor Presentation",
+				pdfLink: "Open PDF in new tab ↗",
 				footer: "© 2026 AI Labs . Lat. All rights reserved.",
 			},
 			es: {
@@ -201,6 +250,8 @@
 				subtitle: "El espacio de trabajo construido para la era de la IA.",
 				oneLiner: "Un IDE que piensa en IA, no en archivos.",
 				body4: "Estamos a punto de abrir una ronda de inversión privada para inversores seleccionados. Descubre si calificas:",
+				pdfHeading: "Presentación para Inversores",
+				pdfLink: "Abrir PDF en nueva pestaña ↗",
 				footer: "© 2026 AI Labs . Lat. Todos los derechos reservados.",
 			},
 		};
